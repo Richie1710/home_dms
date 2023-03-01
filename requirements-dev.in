@@ -7,3 +7,4 @@ django-extensions
 flake8
 mypy
 black
+Pillow

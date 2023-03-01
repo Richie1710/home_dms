@@ -56,6 +56,8 @@ packaging==23.0
     #   tox
 pathspec==0.11.0
     # via black
+pillow==9.4.0
+    # via -r requirements-dev.in
 platformdirs==3.0.0
     # via
     #   black
@@ -70,9 +72,13 @@ pyflakes==3.0.1
 pyproject-api==1.5.0
     # via tox
 python-dateutil==2.8.2
-    # via faker
+    # via
+    #   -c requirements.txt
+    #   faker
 six==1.16.0
-    # via python-dateutil
+    # via
+    #   -c requirements.txt
+    #   python-dateutil
 sqlparse==0.4.3
     # via
     #   -c requirements.txt
