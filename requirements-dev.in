@@ -1,6 +1,8 @@
 -c requirements.txt
 tox
 coverage
+django-debug-toolbar
+django-extensions
 flake8
 mypy
 black
