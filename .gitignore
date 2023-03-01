@@ -130,3 +130,7 @@ dmypy.json
 
 #Direnv
 .envrc
+
+#UploadFiles
+home_dms/media
+
