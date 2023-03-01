@@ -1,0 +1,31 @@
+[run]
+source = .
+omit =
+    ./env/*
+    */tests/*
+    *apps.py
+    manage.py
+    *__init__.py
+    */migrations/*
+    *asgi*
+    *wsgi*
+    *urls.py
+
+[report]
+fail_under = 97.47
+omit =
+    ./env/*
+    */tests/*
+    *apps.py
+    manage.py
+    *__init__.py
+    */migrations/*
+    *asgi*
+    *wsgi*
+    *urls.py
+
+show_missing = True
+
+
+[html] 
+directory = tests/coverage/html_report/
