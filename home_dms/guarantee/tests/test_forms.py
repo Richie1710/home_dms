@@ -2,6 +2,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 from guarantee.models import Device
 from http import HTTPStatus
+import arrow
 
 
 class DeviceFormsTests(TestCase):
@@ -68,3 +69,38 @@ class DeviceFormsTests(TestCase):
         self.assertNotContains(negativeresponse, text=manufacturer)
         self.assertEqual(manufacturerresponse.status_code, HTTPStatus.OK)
         self.assertEqual(nameresponse.status_code, HTTPStatus.OK)
+
+    def test_check_guarantee(self):
+        """Teste ob eine Kategorie per POST angelegt werden kann."""
+
+        truepayload = {
+            "manufacturer": "true_Manufacturer",
+            "name": "guarantee_true_",
+            "buyed_at": arrow.utcnow().date(),
+            "guarantee_end": arrow.utcnow().shift(days=2).date(),
+        }
+
+        falsepayload = {
+            "manufacturer": "false_Manufacturer",
+            "name": "guarantee_false",
+            "buyed_at": arrow.utcnow().shift(years=-1).date(),
+            "guarantee_end": arrow.utcnow().shift(days=-1).date(),
+        }
+        true_response = self.client.post(
+            reverse("guarantee:guarantee_add"), truepayload
+        )
+        self.assertEqual(true_response.status_code, HTTPStatus.FOUND)
+        false_response = self.client.post(
+            reverse("guarantee:guarantee_add"), falsepayload
+        )
+        self.assertEqual(false_response.status_code, HTTPStatus.FOUND)
+        true_device = (
+            Device.objects.filter(name=truepayload["name"])
+            .filter(manufacturer=truepayload["manufacturer"]).get()
+        )
+        self.assertTrue(true_device.check_guarantee())
+        false_device = (
+            Device.objects.filter(name=falsepayload["name"])
+            .filter(manufacturer=falsepayload["manufacturer"]).get()
+        )
+        self.assertFalse(false_device.check_guarantee())
