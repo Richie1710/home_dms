@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Device wirklich löschen?
+{% endblock %}
+
+{% block head %}
+Device wirklich löschen: {{object}}
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-left: 0">
+    <form method="POST">
+        {% csrf_token %}
+        <p>Möchtest du das Objekt <a href="{{object.get_absolute_url}}" target="blank">{{object}}</a> wirklich löschen?</p>
+        <input type="submit" class="btn btn-primary" value="Löschen">
+    </form>
+</div>
+{% endblock %}
