@@ -1,6 +1,7 @@
 -c requirements.txt
 tox
 coverage
+factory-boy
 django-debug-toolbar
 django-extensions
 flake8
