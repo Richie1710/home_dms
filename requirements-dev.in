@@ -1,2 +1,5 @@
 tox
 coverage
+flake8
+mypy
+black
