@@ -30,3 +30,9 @@ jobs:
       run: |
         cd home_dms
         python manage.py test
+    - name: Check Coverage
+      run: |
+        cd home_dms
+        coverage erase
+        coverage run manage.py test
+        coverage report
