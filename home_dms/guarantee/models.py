@@ -14,7 +14,7 @@ class Device(models.Model):
         null=True,
         blank=True
     )
-    buyed_at = models.DateField(default=arrow.utcnow().date(),)
+    buyed_at = models.DateField(default=arrow.utcnow().date)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     guarantee_end = models.DateField(
