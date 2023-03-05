@@ -28,4 +28,5 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Run Tests
       run: |
+        cd home_dms
         python manage.py test
