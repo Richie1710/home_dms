@@ -134,3 +134,5 @@ dmypy.json
 #UploadFiles
 home_dms/media
 
+#VsCode
+.vscode
