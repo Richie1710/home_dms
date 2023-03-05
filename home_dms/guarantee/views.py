@@ -15,7 +15,7 @@ class DeviceListView(ListView):
 
     paginate_by = 20
     model = Device
-    queryset = Device.objects.all()
+    queryset = Device.objects.order_by("pk").all()
 
 
 class DeviceDetailView(DetailView):
