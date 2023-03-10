@@ -18,3 +18,4 @@ jobs:
         with:
           ignore: "F401"
           max-line-length: "100"
+          exclude: "migrations"
