@@ -32,9 +32,7 @@ class DeviceForm(forms.ModelForm):
             "guarantee_end": forms.DateInput(
                 format=("%Y-%m-%d"), attrs={"type": "date"}
             ),
-            "buyed_at": forms.DateInput(
-                format=("%Y-%m-%d"), attrs={"type": "date"}
-            )
+            "buyed_at": forms.DateInput(format=("%Y-%m-%d"), attrs={"type": "date"}),
         }
 
     def clean(self) -> dict:
@@ -50,6 +48,8 @@ class DeviceForm(forms.ModelForm):
                 self._errors["guarantee_end"] = self.error_class(
                     ["Das Ende der Garantie kann nicht vor dem Kaufdatum liegen"]
                 )
-                raise ValidationError("Das Ende der Garantie kann nicht vor dem Kaufdatum liegen")
+                raise ValidationError(
+                    "Das Ende der Garantie kann nicht vor dem Kaufdatum liegen"
+                )
 
         return self.cleaned_data
