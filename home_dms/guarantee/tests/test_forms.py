@@ -45,24 +45,15 @@ class DeviceFormsTests(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_search_manufacturer(self):
-        """Testet die Suchfunktion
-        """
-        self.client.post(
-            reverse("guarantee:guarantee_add"), self.device_payload
-        )
+        """Testet die Suchfunktion"""
+        self.client.post(reverse("guarantee:guarantee_add"), self.device_payload)
 
         searchurl = reverse("guarantee:guarantee_search")
         manufacturer = self.device_payload["manufacturer"]
         name = self.device_payload["name"]
-        manufacturerresponse = self.client.get(
-            f"{searchurl}?q={manufacturer}"
-        )
-        nameresponse = self.client.get(
-            f"{searchurl}?q={name}"
-        )
-        negativeresponse = self.client.get(
-            f"{searchurl}?q=NOTEXIST"
-        )
+        manufacturerresponse = self.client.get(f"{searchurl}?q={manufacturer}")
+        nameresponse = self.client.get(f"{searchurl}?q={name}")
+        negativeresponse = self.client.get(f"{searchurl}?q=NOTEXIST")
         print(manufacturerresponse, nameresponse)
         self.assertContains(manufacturerresponse, text=manufacturer)
         self.assertContains(nameresponse, text=name)
@@ -96,11 +87,13 @@ class DeviceFormsTests(TestCase):
         self.assertEqual(false_response.status_code, HTTPStatus.FOUND)
         true_device = (
             Device.objects.filter(name=truepayload["name"])
-            .filter(manufacturer=truepayload["manufacturer"]).get()
+            .filter(manufacturer=truepayload["manufacturer"])
+            .get()
         )
         self.assertTrue(true_device.check_guarantee())
         false_device = (
             Device.objects.filter(name=falsepayload["name"])
-            .filter(manufacturer=falsepayload["manufacturer"]).get()
+            .filter(manufacturer=falsepayload["manufacturer"])
+            .get()
         )
         self.assertFalse(false_device.check_guarantee())

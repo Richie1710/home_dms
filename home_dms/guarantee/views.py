@@ -60,6 +60,7 @@ class DeviceSearchView(ListView):
     """
     Search for Device
     """
+
     model = Device
 
     def get_queryset(self) -> QuerySet:

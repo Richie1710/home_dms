@@ -6,11 +6,9 @@ app_name = "guarantee"
 
 urlpatterns = [
     path("", views.DeviceListView.as_view(), name="guarantee_list"),
-    path("guarantee/add", views.DeviceCreateView.as_view(),
-         name="guarantee_add"),
+    path("guarantee/add", views.DeviceCreateView.as_view(), name="guarantee_add"),
     path(
-        "guarantee/<int:pk>", views.DeviceDetailView.as_view(),
-        name="guarantee_detail"
+        "guarantee/<int:pk>", views.DeviceDetailView.as_view(), name="guarantee_detail"
     ),
     path(
         "guarantee/<int:pk>/delete",
@@ -22,9 +20,5 @@ urlpatterns = [
         views.DeviceUpdateView.as_view(),
         name="guarantee_update",
     ),
-    path(
-        "guarantee/search",
-        views.DeviceSearchView.as_view(),
-        name="guarantee_search"
-    )
-    ]
+    path("guarantee/search", views.DeviceSearchView.as_view(), name="guarantee_search"),
+]
