@@ -67,8 +67,8 @@ class DeviceSearchView(ListView):
         qs = super().get_queryset()
         q = self.request.GET.get("q", "")
         return qs.filter(
-            Q(name__icontains=q)
-            | Q(description__icontains=q)
-            | Q(manufacturer__icontains=q)
-            | Q(model__icontains=q)
+            Q(name__icontains=q) |
+            Q(description__icontains=q) |
+            Q(manufacturer__icontains=q) |
+            Q(model__icontains=q)
         )
